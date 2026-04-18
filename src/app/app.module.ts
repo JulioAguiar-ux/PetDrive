@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Categoria } from '../categoria/entities/categoria.entity';
 import { CategoriaModule } from '../categoria/categoria.module';
+import { UsuarioModule } from '../usuario/usuario.module';
 
 @Module({
   imports: [
@@ -15,7 +17,12 @@ import { CategoriaModule } from '../categoria/categoria.module';
       autoLoadEntities: true,
       synchronize: true,
     }),
+
     CategoriaModule,
+    UsuarioModule,
   ],
+
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
